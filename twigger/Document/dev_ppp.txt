@@ -1,0 +1,15 @@
+PEOPLE
+	SeifeK
+	JamesW
+	BenR
+	SeanG
+
+PROCESS
+	Understand Product
+	Develop Test Plan
+	Scope Automation Effort
+	Automate Test Cases
+	Maintainenance 
+	
+PRODUCT
+	High Quality Automated Test Cases	

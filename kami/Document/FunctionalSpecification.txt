@@ -1,0 +1,25 @@
+USER ACTIONS:
+Admin Actions
+	Create user account
+	Login
+	Define Questionnaire
+	Save Questionnaire Definition
+	Fillout to Questionnaire
+	Save Filled-out Questionnaire
+	Logout
+
+User Actions:
+	Login
+	Fillout to Questionnaire
+	Save Filled-out Questionnaire
+	Logout
+
+USE CASES:
+1. Initial Admin user logs in and configures the required data fields for USERS and CONSUMERS. 
+   Admin user can also create additional data fields for the USER and CONSUMER entities.
+
+2. Admin user creates a user account
+	The administrator navigates to the create account page and fills in user information
+	{USER, USER_PWD, USER_CONTACT}
+
+3. A USER logs in to the system and navigates to <questionnaire-URL> and creates a new CONSUMER_PROFILE

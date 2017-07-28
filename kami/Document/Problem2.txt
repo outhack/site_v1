@@ -1,0 +1,11 @@
+Title:
+	Robust software needed by nursing agencies for storing patient information on questionnaire
+
+Document history:
+	5/7/2017, James Wambugu,
+
+Description:
+	
+Solution:
+	Implement a questionnaire that the administrator and field nurse can fill out about the patient
+	The solution must provide a login interface and accountability for data modification

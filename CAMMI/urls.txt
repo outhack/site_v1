@@ -1,0 +1,23 @@
+http://www.cammi.com/<accountID>/<app-name>
+
+/admin/<secret-text>	--Site Administration
+/login			--Allows the user to login to the application
+/<accountID>		--Displays the home page of the account which lists apps they have access to
+			  It also lists an account settings icon for users with admin permission
+/<accountID>/consumer/	--Links: List, Profile, DataPoint, DataPointSet
+../consumer/list	--Display list of all the consumers associated with the account
+	../list/create	--Form that allows the creation of a consumer entry
+../consumer/list/<id>	--Display a detailed view of the consumer's associated with the account
+../consumer/profile	--Display a list of all the profiles associated with the account
+../consumer/profile/<id>--Display a detailed view of the profile with id=<id>
+../consumer/datapoint	--Display a list of all the data points defined by the account user
+../consumer/datapoint_set	--Display a list of all datapoint sets
+
+
+../account/		--Links: Users, Settings
+../account/users/	--Display a list of users and link to create, modify, delete a user
+../account/users/create/--Form to allow the creation of a new user
+../account/users/<id>/	--Detailed view of a user with id=<id>
+../account/users/modify/<id>/	--Allows for modification of user with id=<id>
+../account/users/delete/<id>/	--Deletes user with id=<id>
+../account/settings/

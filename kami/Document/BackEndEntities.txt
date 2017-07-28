@@ -1,0 +1,28 @@
+USER		{id, group, first_name, middle_name, last_name, profession, department}
+USER_PWD	{user, username, password, email}
+USER_CONTACT	{user, email, cell_phone, home_phone, address1, address2, country, state/province, zip_code}
+PROFESSION	{id, profession}
+GROUP		{id, group}
+DEPARTMENT	{id, department}
+
+
+CONSUMER	{id, ssn, first_name, middle_name, last_name, dob, gender}
+QUESTION	{id, question, answer_type}
+ADDRESS		{id, consumer, type, address1, address2, country, city, state/province, zip_code}
+PHONE		{id, consumer, type, number}
+ADDRESS_TYPE	{id, type}
+PHONE_TYPE	{id, type}
+SERVICE		{id, service}
+CONSUMER_QUESTION01	{<consumer, question,> answer, remark}
+CONSUMER_QUESTION02	{<consumer, question,> answer, remark}
+
+
+//The consumer profile fields can be added deleted or modified by an ADMIN user
+//Temporary Holder for information transitioning to the CONSUMER_QUESTION table
+//QUESTION_SET	{id, description, <question-set>, answer}
+QUESTION_SET	{<consumer, question,> answer, remark}
+
+REVIEW		{id, reviewer, date_of_review}
+
+===
+CONSUMER_RELATION	{id, consumer1, consumer2, relation}

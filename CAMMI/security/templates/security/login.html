@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<p>{{ current_url }} </p>
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'security:login_attempt' %}" method="post">
+{% csrf_token %}
+<!-- {% for choice in question.choice_set.all %} --> -->
+	<!-- <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+	<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br /> -->
+<!-- {% endfor %} -->
+  <label>Username</label><input type="text" name="username"/><br />
+  <label>Password</label><input type="password" name="password" /><br />
+<input type="submit" value="Login" />
+</form>

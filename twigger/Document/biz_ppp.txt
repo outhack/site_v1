@@ -1,0 +1,12 @@
+PEOPLE
+	SeifeK
+	JamesW
+
+PROCESS
+	Outreach through Sales and Marketing
+	Sales Pitch with Potential Customer
+	Negotiation of Terms
+	Closing of Deal	
+
+PRODUCT
+	Service Agreement

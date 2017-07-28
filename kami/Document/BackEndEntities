@@ -1,0 +1,12 @@
+CONSUMER	{id, first_name, middle_name, last_name, dob, gender}
+QUESTION	{id, type, question}
+QUESTION_TYPE 	{id, type[binary, non-binary]}
+ADDRESS		{id, consumer, type, address1, address2, country, city, state/province, zip_code}
+PHONE		{id, consumer, type, number}
+ADDRESS_TYPE	{id, type}
+PHONE_TYPE	{id, type}
+CONSUMER_QUESTION	{consumer, question, answer}
+
+
+===
+CONSUMER_RELATION	{id, consumer1, consumer2, relation}
