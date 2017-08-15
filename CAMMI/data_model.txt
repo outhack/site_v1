@@ -1,0 +1,16 @@
+USER               {admin.logentry, id, password, last_login, is_superuser, username, firstname, lastname, email, is_staff, is_active, date_joined, groups, user_permissions,
+                    account_id, is_account_admin}
+
+ACCOUNT            {id, account_name, is_active, date_joined}
+
+CONSUMER	         {id, ssn, first_name, last_name, dob, gender, address, country, city, state, zip_code}
+
+CONSUMER_DATAPOINT  {<consumer_id, datapoint_id>ck, answer, comment, datapoint_group_id, created_time, created_by, last_modified_time, last_modified_by}
+
+CDP_TEMP           {consumer_id, datapoint_id, answer, comment, datapoint_group_id}
+
+DATAPOINT	         {id, datapoint, answer_type, options}          //1, "History of <sickness>", radio_button, "Yes, No"
+
+DATAPOINT_GROUP	   {id, group_name, datapoint_id}
+
+DATAPOINT_DP-GROUP {}

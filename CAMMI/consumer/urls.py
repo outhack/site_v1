@@ -22,11 +22,11 @@ urlpatterns = [
     #ex: /consumer/profile/2/
     url(r'^profile/(?P<profile_id>[0-9]+)/$', views.viewProfile, name='view_profile'),
     #ex: /consumer/profile/create/
-    url(r'^profile/create/$', views.createProfile, name='view_profile'),
+    url(r'^profile/create/$', views.createProfile, name='create_profile'),
     #ex: /consumer/profile/modify/66
-    url(r'^profile/modify/(?P<profile_id>[0-9]+)/$', views.modifyProfile, name='view_profile'),
+    url(r'^profile/modify/(?P<profile_id>[0-9]+)/$', views.modifyProfile, name='modify_profile'),
     #ex: /consumer/profile/delete/66
-    url(r'^profile/delete/(?P<profile_id>[0-9]+)/$', views.deleteProfile, name='view_profile'),
+    url(r'^profile/delete/(?P<profile_id>[0-9]+)/$', views.deleteProfile, name='delete_profile'),
 
     #DataPoint
     #ex: /consumer/datapoint/

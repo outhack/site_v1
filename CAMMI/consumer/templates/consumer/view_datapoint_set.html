@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+  <head>
+  <title>{{ title }}</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'consumer/base_template1.css' %}" />
+  </head>
+  <body>
+    <div id="page">
+      <!--header-->
+      <header id="kichwa" role="banner">
+          Banner
+      </header>
+
+      <!--content -->
+      <div id="content">
+        <div id="layer0">
+          <div id="home_link"><a href="/">Home</a></div>
+          <div id="bread_crumb">bread crumb</div>
+        </div>
+        <div id="layer1">
+          <div id="content-right">
+            <div id="action_bar">
+              Action Bar
+            </div>
+            <div id="sub_content">
+              Sub-Content {{ title }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--footer-->
+      <footer id="nyayo" role="contentinfo">
+        Footer
+      </footer>
+    </div>
+  </body>
+</html>

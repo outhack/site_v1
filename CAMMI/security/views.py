@@ -23,6 +23,12 @@ def loginAttempt(request):
 def evaluateAccountAccessByID(request, id):
     account_id = request.user.id
 
+def displaySiteHomePage(request):
+    if request.user.is_authenticated():
+        account_id = request.user.id
+        return redirect("/" + str(account_id)+"/")
+    else:
+        return redirect("/login/")
 
 # @login_required(login_url='/login/')
 # def evaluateAccountID(request, account_id):

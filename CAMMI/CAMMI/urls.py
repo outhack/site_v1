@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^(?P<account_id>[0-9]+)/consumer/', include('consumer.urls')),
     url(r'^(?P<account_id>[0-9]+)/', include('account.urls')),
     url(r'^security/', include('security.urls')),
+    url(r'^', include('security.urls')),
 ]
