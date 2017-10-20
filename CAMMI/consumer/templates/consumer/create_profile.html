@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
   <head>
   <title>{{ title }}</title>
   {% load static %}
+  {% load consumer_extras %}
   <link rel="stylesheet" type="text/css" href="{% static 'consumer/base_template1.css' %}" />
   </head>
   <body>
@@ -25,7 +26,61 @@
               <!-- Action Bar -->
             </div>
             <div id="sub_content">
-              <!-- Sub-Content {{ title }} -->
+              <form method="post" action"456">
+                {% csrf_token %}
+                <table>
+                  <tr>
+                    <td><label>{{ consumer_form.first_name.label_tag }}</label></td><td>{{ consumer_form.first_name }}</td>
+                    <td><label>{{ consumer_form.last_name.label_tag }}</label></td><td>{{ consumer_form.last_name }}</td>
+                    <td><label>{{ consumer_form.gender.label_tag }}</label></td><td>{{ consumer_form.gender }}</td>
+                  </tr>
+                  <tr>
+                    <td><label>{{ consumer_form.dob.label_tag }}</label></td><td>{{ consumer_form.dob }}</td>
+                    <td><label>{{ consumer_form.ssn.label_tag }}</label></td><td>{{ consumer_form.ssn }}</td>
+                  </tr>
+                  <br/>
+                  <tr>
+                    <td><label>{{ consumer_form.country.label_tag }}</label></td><td>{{ consumer_form.country }}</td>
+                  </tr>
+                  <tr>
+                    <td><label>{{ consumer_form.address1.label_tag }}</label></td><td>{{ consumer_form.address1 }}</td>
+                    <td><label>{{ consumer_form.address2.label_tag }}</label></td><td>{{ consumer_form.address2 }}</td>
+                  </tr>
+                  <tr>
+                    <td><label>{{ consumer_form.city.label_tag }}</label></td><td>{{ consumer_form.city }}</td>
+                    <td><label>{{ consumer_form.state.label_tag }}</label></td><td>{{ consumer_form.state }}</td>
+                    <td><label>{{ consumer_form.zip_code.label_tag }}</label></td><td>{{ consumer_form.zip_code }}</td>
+                  </tr>
+                </table>
+                <br/>
+                <table style="text-align:">
+                  {% for dps in consumer_datapoint_form.datapoint_set %}
+                    <tr><td>{{ dps.datapoint }}?</td></tr>
+                    <tr>
+                      <td>
+                        {% if dps.answer_type == "text" %}
+                          <input id={{ dps.pk }} type="text" size="100">
+                        {% endif %}
+                        {% if dps.answer_type == "checkbox" %}
+                          {% with dps.options|split_as_option as options %}
+                            {% for option in options %}
+                                <input id={{ option }} name={{ option }} type="checkbox"/>{{option}}
+                            {% endfor %}
+                          {% endwith %}
+                        {% endif %}
+                        {% if dps.answer_type == "radio" %}
+                          <input id={{ dps.pk }} type="text" size="100">
+                        {% endif %}
+                        {% if dps.answer_type == "select" %}
+                          <input id={{ dps.pk }} type="text" size="100">
+                        {% endif %}
+                        <div style="height:20px; margin:; background-color:"></div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  <tr><td><input type="submit" value="Submit" /></td></tr>
+                </table>
+              </form>
             </div>
           </div>
         </div>

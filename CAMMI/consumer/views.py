@@ -1,7 +1,8 @@
 # from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question
+# from .models import Question
+from .models import Datapoint, Consumer
 from django.urls import reverse
 # from django.template import loader
 from django.views import generic
@@ -11,6 +12,8 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 # from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.forms import modelform_factory
+from .forms import ConsumerForm, ConsumerDatapointForm
 
 # Create your views here.
 def userHasAccess(request, account_id):
@@ -79,11 +82,30 @@ def modifyConsumer(request, account_id, consumer_id):
 @login_required(login_url='/login/')
 def createConsumer(request, account_id):
     if userHasAccess(request, account_id):
+        if request.method == 'POST':
+            # form =  modelform_factory(Consumer, fields=("first_name"))
+            consumer_form = ConsumerForm(request.POST)
+            consumer_datapoint_form = ConsumerDatapointForm(request.POST)
+            if form.is_valid:
+                #process the data
+                #...
+                #
+                return render(request, 'consumer/create_consumer.html',{
+                    # 'username':request.user.username,
+                    # 'page': 'consumer app homepage',
+                    # 'message':"consumerHome",
+                    # 'title':"Delete Consumer"
+                })
+        else:
+            consumer_form = ConsumerForm()
+            consumer_datapoint_form = ConsumerDatapointForm()
         return render(request, 'consumer/create_consumer.html',{
-            'username':request.user.username,
-            'page': 'consumer app homepage',
-            'message':"consumerHome",
-            'title':"Create Consumer",
+            # 'username':request.user.username,
+            # 'page': 'consumer app homepage',
+            # 'message':"consumerHome",
+            # 'title':"Delete Consumer",
+            'consumer_form':consumer_form,
+            'consumer_datapoint_form':consumer_datapoint_form,
         })
     else:
         return pageNotFound(request)
@@ -125,13 +147,32 @@ def viewProfile(request, account_id, profile_id):
         return pageNotFound(request)
 
 @login_required(login_url='/login/')
-def createProfile(request, account_id):
+def viewCreateProfile(request, account_id):
     if userHasAccess(request, account_id):
+        if request.method == 'POST':
+            # form =  modelform_factory(Consumer, fields=("first_name"))
+            consumer_form = ConsumerForm(request.POST)
+            consumer_datapoint_form = ConsumerDatapointForm(request.POST)
+            if form.is_valid:
+                #process the data
+                #...
+                #
+                return render(request, 'consumer/create_profile.html',{
+                    # 'username':request.user.username,
+                    # 'page': 'consumer app homepage',
+                    # 'message':"consumerHome",
+                    # 'title':"Delete Consumer"
+                })
+        else:
+            consumer_form = ConsumerForm()
+            consumer_datapoint_form = ConsumerDatapointForm()
         return render(request, 'consumer/create_profile.html',{
-            'username':request.user.username,
-            'page': 'consumer app homepage',
-            'message':"consumerHome",
-            'title':"Create Profile",
+            # 'username':request.user.username,
+            # 'page': 'consumer app homepage',
+            # 'message':"consumerHome",
+            # 'title':"Delete Consumer",
+            'consumer_form':consumer_form,
+            'consumer_datapoint_form':consumer_datapoint_form,
         })
     else:
         return pageNotFound(request)
@@ -279,3 +320,25 @@ def deleteDataPointSet(request, account_id, datapoint_set_id):
         })
     else:
         return pageNotFound(request)
+
+def createProfile(request):
+    consumer = Consumer.objects.get(ssn=request.POST['ssn'])
+    if(consumer is None):
+        Consumer.objects.create(ssn=request.POST['ssn'],
+        first_name = request.POST['first_name'],
+        last_name = request.POST['last_name'],
+        gender = request.POST['gender'],
+        dob = request.POST['dob'],
+        country = request.POST['country'],
+        address1 = request.POST['address1'],
+        address2 = request.POST['address2'],
+        city = request.POST['city'],
+        state = request.POST['state'],
+        zip_code = request.POST['zip_code'])
+
+        return render(request, 'consumer/',{
+            'username':request.user.username,
+            'page': 'consumer app homepage',
+            'message':"consumerHome",
+            'title':"Modify DataPoint Set",
+        })

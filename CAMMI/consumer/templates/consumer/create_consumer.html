@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
   <head>
-  <title>{{ title }}</title>
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'consumer/base_template1.css' %}" />
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'consumer/base_template1.css' %}" />
   </head>
   <body>
     <div id="page">
@@ -25,7 +25,36 @@
               Action Bar
             </div>
             <div id="sub_content">
-              Sub-Content {{ title }}
+              <!-- Sub-Content {{ title }} -->
+              <form action="/your-name/" method="post">
+                {% csrf_token %}
+                <table>
+
+                <tr>
+                  <td><label>{{ consumer_form.first_name.label_tag }}</label></td><td>{{ consumer_form.first_name }}</td>
+                  <td><label>{{ consumer_form.last_name.label_tag }}</label></td><td>{{ consumer_form.last_name }}</td>
+                  <td><label>{{ consumer_form.gender.label_tag }}</label></td><td>{{ consumer_form.gender }}</td>
+                </tr>
+                <tr>
+                  <td><label>{{ consumer_form.dob.label_tag }}</label></td><td>{{ consumer_form.dob }}</td>
+                  <td><label>{{ consumer_form.ssn.label_tag }}</label></td><td>{{ consumer_form.ssn }}</td>
+                </tr>
+                <br/>
+                <tr>
+                  <td><label>{{ consumer_form.country.label_tag }}</label></td><td>{{ consumer_form.country }}</td>
+                </tr>
+                <tr>
+                  <td><label>{{ consumer_form.address1.label_tag }}</label></td><td>{{ consumer_form.address1 }}</td>
+                  <td><label>{{ consumer_form.address2.label_tag }}</label></td><td>{{ consumer_form.address2 }}</td>
+                </tr>
+                <tr>
+                  <td><label>{{ consumer_form.city.label_tag }}</label></td><td>{{ consumer_form.city }}</td>
+                  <td><label>{{ consumer_form.state.label_tag }}</label></td><td>{{ consumer_form.state }}</td>
+                  <td><label>{{ consumer_form.zip_code.label_tag }}</label></td><td>{{ consumer_form.zip_code }}</td>
+                </tr>
+                </table>
+                <input type="submit" value="Submit" />
+              </form>
             </div>
           </div>
         </div>

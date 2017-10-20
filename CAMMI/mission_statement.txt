@@ -1,4 +1,9 @@
 It is 12.45PM August 1st 2017. CAMMI v0.1 has just been launched and is available on the web for testing. The application features
 	1. A login interface.
 	2. The ability to create, modify and delete consumer profiles.
-	3. The ability to view a consumer's profile in detail.
+	3. The ability to view a consumer's profile in detail
+===08/24/2017
+It is 12.00AM August 30th 2017. CAMMI v0.1 prototype has just been launched and is available on the web for testing. The application features:
+	1. A login interface
+	2. The ability to create, modify and delete consumer profiles.
+	3. The ability to view consumer profiles in detail

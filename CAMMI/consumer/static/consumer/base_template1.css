@@ -2,15 +2,15 @@ body  {margin:0; font-family: "Courier New", Courier, monospace}
 a     {text-decoration: none}
 /*div   {text-align: center;}*/
 #page   {width:1000px; margin-left: auto; margin-right: auto;}
-header {width:100%; height: 50px; background-color: red;}
+header {width:100%; height: 50px; background-color: ;}
 #layer0   {clear: both; height: 55px}
 #layer1   {clear: both; height: 700px;}
-#home_link  {float: left; background-color: pink; width: 55px; height: 100%}
-#bread_crumb  {background-color: yellow; height: 100%}
+#home_link  {float: left; background-color: ; width: 55px; height: 100%}
+#bread_crumb  {background-color: ; height: 100%}
 #action_bar   {height: 25px; background-color: white;}
 #navigation   {float: left; background-color: green; width: 20%; height: 100%; }
 #content-right  {height: 100%;}
 /*#nav_links    {padding: 30px}*/
 #nav_link    {height: 30px; padding: 5px; vertical-align: middle;}
-#sub_content  {background-color: violet; height: 100%;}
-footer{background-color: orange; height: 150px}
+#sub_content  {background-color: ; height: 100%;}
+footer{background-color: ; height: 150px}

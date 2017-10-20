@@ -1,0 +1,4 @@
+Operations to perform:
+  Apply all migrations: admin, auth, consumer, contenttypes, sessions
+Running migrations:
+  Applying consumer.0006_auto_20171018_0335...

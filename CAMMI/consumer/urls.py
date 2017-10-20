@@ -22,7 +22,9 @@ urlpatterns = [
     #ex: /consumer/profile/2/
     url(r'^profile/(?P<profile_id>[0-9]+)/$', views.viewProfile, name='view_profile'),
     #ex: /consumer/profile/create/
-    url(r'^profile/create/$', views.createProfile, name='create_profile'),
+    url(r'^profile/create/$', views.viewCreateProfile, name='view_create_profile'),
+
+    url(r'^profile/create/(?P<ssn>[0-9]+)/$', views.createProfile, name='create_profile'),
     #ex: /consumer/profile/modify/66
     url(r'^profile/modify/(?P<profile_id>[0-9]+)/$', views.modifyProfile, name='modify_profile'),
     #ex: /consumer/profile/delete/66
