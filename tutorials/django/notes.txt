@@ -1,0 +1,85 @@
+DJANGO TUTORIAL
+===============
+
+		   Template ---------->| 
+	   	   |		       | Web
+Database===Model===View		       | 
+	   	   |		       | Client
+   	   	   Url <----request----|
+
+Commands
+--------
+>django-admin startproject <project-name> 	//Create a django project
+>python manage.py runserver			//Run django webserver
+>python manage.py startapp <app-name>		//Start an application project
+
+
+
+
+
+
+===============
+### FORMS 
+## Form Class
+The Django Form Class is used to produce.
+A Form class describes a form and determines how it works and appears
+A Form class fields map to a HTML form <input> elements
+A ModelForm maps a model class's fields to HTML <input> elements via a Form class
+A form's fields are themselves classes; 
+	they manage form data and perform validation when a form is submitted.
+	A DateField and a FileField handle very different kinds of data
+A form field is represented to a user in the browser as an HTML 'widget'
+	A widget is a piece of user interface machinery
+Each field type has an appropriate default "Widget Class" but these can be overridden
+
+##Instantiating, processing and rendering Forms
+When rendering an object in Django, we generally:
+	-Get hold of it in the view (fetch it from the database, for example)
+	-Pass it to the template context
+	-Expand it to HTML markup using template variables
+
+When we handle a model instance in a view, we typically retrieve it from the database;
+When we're dealing with a Form we typically instantiate it in the view
+
+When instatiating the Form we can pre-populate it with
+	-Data from a saved Model instance
+	-Data that we have collated from other sources
+	-Data received from a previous HTML form submission
+
+##Building a Form
+
+// forms.py
+
+from django import forms
+
+class NameForm(forms.Form):
+	name = forms.CharField(label='Name', max_length=100)
+
+// view.py
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+
+from .forms import NameForm
+
+def get_name(request):
+	if request.method == 'POST':
+		# Create a form instance
+		form = NameForm(request.FORM)
+		# Check Form Validity
+		if form.is_valid():
+			return HttpResponseRedirect('/thanks/')
+
+	# if a GET method is used, create a blank form
+	else:
+		form = NameForm()
+
+	return render(request, 'name.html', {'form':form})
+
+// name.html
+<form action="/name/" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit />
+</form>
+
+

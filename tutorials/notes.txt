@@ -1,0 +1,38 @@
+//Install postgresql-server
+dnf install postgresql-server
+
+//postgres database
+/var/lib/pgsql/initdb_postgresql.log
+
+//Edit file "/var/lib/pgsql/data/pg_hba.conf" such that 
+host    all             all             127.0.0.1/32            trust
+//remove 'ident' and put 'trust'
+
+//Migrate(settings.py.INSTALLED_APPS,models)
+python manage.py migrate
+//This command creates database tables for the INSTALLED_APPS based on the defined models
+
+//makemigration <app_name>
+python manage.py makemigrations polls
+//This command informs Django that you've made some changes to your models
+//that you'd like to be stored as a migration.
+//The migration file is stored in polls/migration/0001_initial.py
+
+//sqlmigrate
+python manage.py sqlmigrate polls 0001
+//This command displays to SQL statement to be executed when the 'migrate' command is run
+
+//check
+python manage.py check
+//This command is used to check if there is any problem with your project before making the migration
+
+//Making migrations reiterated
+Change your models (in models.py).
+Run python manage.py makemigrations to create migrations for those changes
+Run python manage.py migrate to apply those changes to the database.
+
+
+//Connect to specific postgres database
+/connect <db_name>
+
+
