@@ -31,9 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
-    'security.apps.SecurityConfig',
-    'consumer.apps.ConsumerConfig',
+    # 'account.apps.AccountConfig',
+    # 'security.apps.SecurityConfig',
+    # 'consumer.apps.ConsumerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

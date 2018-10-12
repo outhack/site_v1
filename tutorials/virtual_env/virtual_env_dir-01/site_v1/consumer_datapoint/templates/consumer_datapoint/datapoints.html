@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/background.css' %}">
+Page <b>{{page}}</b><br />
+Logo <b><a href="/">{{logo}}</a></b><br />
+Username <b>{{username}}</b> <a href='/{{login}}'>{{login}}</a><br />
+{% for app_link in app_links %}
+    <li><a href="/consumer_datapoint/datapoint/{{ app_link }}">{{ app_link }}</a></li>
+{% endfor %}
+
+{% if datapoint_list %}
+    <table border="1px">
+      <tr>
+        <!-- <td><input id="select_all" type="checkbox"></input></td> -->
+        <td>DATAPOINT</td>
+        <td>TYPE</td>
+      </tr>
+    {% for dp in datapoint_list %}
+        <tr>
+          <!-- <td><input id="{{dp.id}}" type="checkbox"></input></td> -->
+          <td><a href="{% url 'consumer_datapoint:datapoint' dp.id %}">{{ dp.datapoint }}</td>
+          <td>{{dp.answer_type}}</a></td>
+          <td><a href="{% url 'consumer_datapoint:delete_datapoint' dp.id %}">delete</td>
+        </tr>
+    {% endfor %}
+  </table>
+{% else %}
+    <p>No datapoints are available.</p>
+{% endif %}
+<!-- Authorized_Apps <a href='/{{app_links}}'>{{app_links}}</a><br /> -->
