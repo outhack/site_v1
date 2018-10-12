@@ -1,49 +1,149 @@
 # -*- coding: utf-8 -*-
-# from __future__ import unicode_literals
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.forms import modelformset_factory
+from django.http import HttpResponse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Account, UserAccount, DataPoint
+from django.forms import ModelForm
+from .forms import DataPointForm
 
-# from .models import Choice, Question
+
+@login_required
+def consumer_datapoint(request):
+    return render(request, 'consumer_datapoint/consumer_datapoint.html',{
+        'username':request.user.username,
+        'logo': 'logo',
+        'page':consumer_datapoint.__name__,
+        'app_links':["datapoint", "datapoint_group", "profile"],
+        'login':"logout",
+    })
+
+@login_required
+def datapoints(request):
+    datapoint_list = DataPoint.objects.all()
+    return render(request, 'consumer_datapoint/datapoints.html',{
+        'username':request.user.username,
+        'logo': 'logo',
+        'page':datapoints.__name__,
+        'app_links':["create"],
+        # 'app_link_urls':["create_form","delete_action"],
+        'login':"logout",
+        'datapoint_list':datapoint_list,
+    })
+
+@login_required
+def datapoint(request, dppk):
+    datapnt = DataPoint.objects.get(pk=dppk)
+    if(request.method == 'POST'):
+        form = DataPointForm(request.POST, instance=datapnt)
+        if(form.is_valid()):
+            form.save()
+            return redirect("/consumer_datapoint/datapoint")
+    else:
+        form = DataPointForm(instance=datapnt)
+        return render(request,'consumer_datapoint/datapoint.html',{'form':form})
+
+@login_required
+def create_datapoint(request):
+    if request.method == 'POST':
+        form = DataPointForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/consumer_datapoint/datapoint")
+    form = DataPointForm()
+    return render(request, 'consumer_datapoint/create_datapoint.html', {
+        'username':request.user.username,
+        'logo': 'logo',
+        'page':create_datapoint.__name__,
+        'app_links':[],
+        'login':"logout",
+        'form':form,
+    })
+
+@login_required
+def delete_datapoint(request,dppk):
+    DataPoint.objects.filter(pk=dppk).delete()
+    return redirect("/consumer_datapoint/datapoint/")
+
+###########
+
+@login_required
+def datapoint_group(request):
+    return render(request, 'consumer_datapoint/datapoint_group.html',{
+        'username':request.user.username,
+        'logo': 'logo',
+        'page':datapoint_group.__name__,
+        'app_links':["datapoint", "datapoint_group", "profile"],
+        'login':"logout",
+    })
+
+@login_required
+def profile(request):
+    return render(request, 'consumer_datapoint/profile.html',{
+        'username':request.user.username,
+        'logo': 'logo',
+        'page':profile.__name__,
+        'app_links':["datapoint", "datapoint_group", "profile"],
+        'login':"logout",
+    })
 
 
+# from django.http import HttpResponseRedirect
+# from django.urls import reverse
+# from django.contrib.auth.mixins import LoginRequiredMixin
 
-class IndexView(generic.TemplateView):
-    template_name = 'consumer_datapoint/index.html'
+# class ConsumerDataPointView(LoginRequiredMixin,generic.DetailView):
+#     login_url = '/account/login/'
+#     model = User
+    # accountModel = Account
+    # user_account = UserAccount
+    # template_name = 'consumer_datapoint/consumer_datapoint.html'
 
-class LoginView(generic.TemplateView):
-    template_name = 'consumer_datapoint/login.html'
+    # context_object_name = 'username'
 
-class UserAccountLandingView(generic.TemplateView):
-    template_name = 'consumer_datapoint/user_account.html'
+    # def get_context_data(self):
+    #     return self.request.user
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+        # context['now'] = datetime.now()
+        # return context
+    #Do you have an account? No: Redirect to unknown_account page, Yes: Continue
+    #Is the account active? No: Redirect to inactive_account page, Yes: Display user data on page
 
-class DataPointsView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoints.html'
-
-class DataPointView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoint.html'
-
-class CreateDataPointView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoints.html'
-
-class DataPointGroupsView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoint_groups.html'
-
-class DataPointGroupView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoint_group.html'
-
-class CreateDataPointGroupView(generic.TemplateView):
-    template_name = 'consumer_datapoint/datapoint_groups.html'
-
-class ProfilesView(generic.TemplateView):
-    template_name = 'consumer_datapoint/profiles.html'
-
-class ProfileView(generic.TemplateView):
-    template_name = 'consumer_datapoint/profile.html'
-
-class CreateProfileView(generic.TemplateView):
-    template_name = 'consumer_datapoint/profiles.html'
+# class LoginView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/login.html'
+#
+# class UserAccountLandingView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/user_account.html'
+#
+# class DataPointsView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoints.html'
+#
+# class DataPointView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoint.html'
+#
+# class CreateDataPointView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoints.html'
+#
+# class DataPointGroupsView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoint_groups.html'
+#
+# class DataPointGroupView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoint_group.html'
+#
+# class CreateDataPointGroupView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/datapoint_groups.html'
+#
+# class ProfilesView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/profiles.html'
+#
+# class ProfileView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/profile.html'
+#
+# class CreateProfileView(generic.TemplateView):
+#     template_name = 'consumer_datapoint/profiles.html'
 
 
 

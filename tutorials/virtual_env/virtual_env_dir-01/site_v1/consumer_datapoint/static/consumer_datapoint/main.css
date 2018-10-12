@@ -1,0 +1,13 @@
+a {
+    color: green;
+}
+
+body {
+    background:  white url("images/medmaskww.jpg") no-repeat;
+    background-position: center;
+}
+
+#login  {
+  margin-left: 45%;
+  margin-top: 300px;
+}
