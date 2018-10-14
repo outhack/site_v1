@@ -14,12 +14,16 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     user = request.user
     if(not request.user.is_authenticated()):
-        return HttpResponse("Homepage <a href='login'>Login</a>")
+        # return HttpResponse("Homepage <a href='login'>Login</a>")
+        return render(request, 'consumer_datapoint/index.html',{
+            'page':"Welcome",
+            'login':"login",
+        })
     else:
         return render(request, 'consumer_datapoint/index.html',{
             'username':request.user.username,
             'logo': 'logo',
-            'page':index.__name__,
+            'page':"Home",
             'app_links':"consumer_datapoint",
             'login':"logout",
         })
@@ -37,7 +41,10 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/')
-    return render(request, 'consumer_datapoint/login.html', {})
+    return render(request, 'consumer_datapoint/login.html', {
+        'page': "Login",
+        'logo': 'M-PSYCH'
+    })
 
 def logout_user(request):
     logout(request)

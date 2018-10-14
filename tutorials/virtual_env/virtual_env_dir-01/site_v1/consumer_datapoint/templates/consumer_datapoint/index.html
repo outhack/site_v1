@@ -1,6 +1,5 @@
+{% extends 'consumer_datapoint/base_00.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/background.css' %}">
-Page <b>{{page}}</b><br />
-Logo <b><a href="/">{{logo}}</a></b><br />
-Username <b>{{username}}</b> <a href='/{{login}}'>{{login}}</a><br />
-Apps <a href='/{{app_links}}'>{{app_links}}</a><br />
+{% block content %}
+<a href='/{{app_links}}'>{{app_links}}</a><br />
+{% endblock %}

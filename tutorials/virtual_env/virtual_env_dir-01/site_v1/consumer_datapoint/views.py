@@ -14,7 +14,7 @@ from .forms import DataPointForm
 def consumer_datapoint(request):
     return render(request, 'consumer_datapoint/consumer_datapoint.html',{
         'username':request.user.username,
-        'logo': 'logo',
+        'logo': 'M-PSYCH',
         'page':consumer_datapoint.__name__,
         'app_links':["datapoint", "datapoint_group", "profile"],
         'login':"logout",
@@ -25,7 +25,7 @@ def datapoints(request):
     datapoint_list = DataPoint.objects.all()
     return render(request, 'consumer_datapoint/datapoints.html',{
         'username':request.user.username,
-        'logo': 'logo',
+        'logo': 'M-PSYCH',
         'page':datapoints.__name__,
         'app_links':["create"],
         # 'app_link_urls':["create_form","delete_action"],
@@ -55,7 +55,7 @@ def create_datapoint(request):
     form = DataPointForm()
     return render(request, 'consumer_datapoint/create_datapoint.html', {
         'username':request.user.username,
-        'logo': 'logo',
+        'logo': 'M-PSYCH',
         'page':create_datapoint.__name__,
         'app_links':[],
         'login':"logout",
@@ -73,7 +73,7 @@ def delete_datapoint(request,dppk):
 def datapoint_group(request):
     return render(request, 'consumer_datapoint/datapoint_group.html',{
         'username':request.user.username,
-        'logo': 'logo',
+        'logo': 'M-PSYCH',
         'page':datapoint_group.__name__,
         'app_links':["datapoint", "datapoint_group", "profile"],
         'login':"logout",
@@ -83,7 +83,7 @@ def datapoint_group(request):
 def profile(request):
     return render(request, 'consumer_datapoint/profile.html',{
         'username':request.user.username,
-        'logo': 'logo',
+        'logo': 'M-PSYCH',
         'page':profile.__name__,
         'app_links':["datapoint", "datapoint_group", "profile"],
         'login':"logout",

@@ -1,7 +1,6 @@
-
+{% extends 'consumer_datapoint/base_00.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/main.css' %}">
-{% block main %}
+{% block content %}
     <div id="login">
         <form class="form-horizontal" name="LoginForm" action="/login/" method="post">
           {% csrf_token %}
