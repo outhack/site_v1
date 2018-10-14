@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{page}}</title>
+  <meta name="description" content="HTML5">
+  <meta name="author" content="vostee">
+  <link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/main.css' %}">
+</head>
+
+<body>
+  <!-- <script src="js/scripts.js"></script> -->
+  <div id="wrapper">
+    <div id="banner">
+      <div id="cdp_logo"><b><a href="/">{{logo}}</a></b><br /></div>
+      <div id="user_controls">
+        <b>{{username}}</b><span>  |  </span><a href='/{{login}}'>{{login}}</a>
+      </div>
+    </div>
+    <div id="banner_shadow">.</div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+      
+      {% for app_link in app_links %}
+          <a href="{{ app_link }}">{{ app_link }}</a><br/>
+      {% endfor %}
+
+      {% if datapoint_list %}
+          <ul>
+          {% for dp in datapoint_list %}
+              <li><a href="{% url 'consumer_datapoint:datapoint' dp.id %}">{{ dp.datapoint }}</a></li>
+          {% endfor %}
+          </ul>
+      {% else %}
+          <!-- <p>No datapoint are available.</p> -->
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

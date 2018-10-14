@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{page}}</title>
+  <meta name="description" content="HTML5">
+  <meta name="author" content="vostee">
+  <link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/main.css' %}">
+</head>
+
+<body>
+  <!-- <script src="js/scripts.js"></script> -->
+  <div id="wrapper">
+    <div id="banner">
+      <div id="cdp_logo">
+        <b><a href="/">M-PSYCH</a></b><br />
+      </div>
+      <div id="user_controls">
+        <b>{{username}}</b><span><b> | </b></span> <a href='/{{login}}'>{{login}}</a><br />
+      </div>
+    </div>
+    <div id="banner_shadow"></div>
+    <div id="bread_crumb">
+      {% block bread_crumb %}
+      {% endblock %}
+    </div>
+    <div id="action_bar">
+      {% block action_bar %}
+      {% endblock %}
+    </div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div id="footer">
+
+    </div>
+  </div>
+</body>
+</html>
