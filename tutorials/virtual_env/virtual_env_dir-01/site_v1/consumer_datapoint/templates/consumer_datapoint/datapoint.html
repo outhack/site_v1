@@ -1,9 +1,6 @@
-{% load static %}
+{% extends 'consumer_datapoint/base_00.html' %}
 {% load crispy_forms_tags %}
-<link rel="stylesheet" type="text/css" href="{% static 'consumer_datapoint/background.css' %}">
-Page <b>{{page}}</b><br />
-Logo <b><a href="/">{{logo}}</a></b><br />
-Username <b>{{username}}</b> <a href='/{{login}}'>{{login}}</a><br />
+{%block content %}
 {% for app_link in app_links %}
     <li><a href="{{ app_link }}">{{ app_link }}</a></li>
 {% endfor %}
@@ -13,6 +10,7 @@ Username <b>{{username}}</b> <a href='/{{login}}'>{{login}}</a><br />
     <!-- {{ form | crispy }} -->
     <button type="submit">Submit</button>
 </form>
+{% endblock %}
 <!-- <table border='1px'>
 <tr><td>DATAPOINT</td><td>ANSWER_TYPE</td><td>OPTIONS</td></tr>
 <tr><td>{{datapoint}}</td><td>{{ datapoint.answer_type }}</td><td>{{datapoint.options}}</td></tr>
