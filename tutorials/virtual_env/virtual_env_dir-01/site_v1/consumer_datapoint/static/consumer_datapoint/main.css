@@ -62,5 +62,7 @@ a:link{
 #footer{
   /* background-image: url("images/footer_shadow.png"); */
   height: 50px;
+  font-size: 12px;
+  text-align: center;
 
 }
